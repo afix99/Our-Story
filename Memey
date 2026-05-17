@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haikal & Memey — A Story Still Blooming</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;1,400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #f4d4d4;
+    --rose: #c9747a;
+    --deep-rose: #8b3a42;
+    --petal: #fdf0f0;
+    --cream: #fdf8f3;
+    --ink: #2a1a1e;
+    --soft-ink: #5a3a40;
+    --gold: #c8a96e;
+    --sage: #8fa68c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      radial-gradient(ellipse at 10% 20%, rgba(244,212,212,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(201,116,122,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(253,240,240,0.3) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+  }
+
+  .cover {
+    text-align: center;
+    padding: 60px 0 80px;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 400;
+    color: var(--deep-rose);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    animation: fadeIn 1.5s ease 0.3s both;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .cover-subtitle {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 20px;
+    animation: fadeIn 1.5s ease 0.6s both;
+  }
+
+  .cover-date {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--soft-ink);
+    font-style: italic;
+    margin-top: 16px;
+    animation: fadeIn 1.5s ease 0.9s both;
+  }
+
+  .chapter {
+    margin: 72px 0 36px;
+    text-align: center;
+  }
+
+  .chapter-number {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .chapter h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 400;
+    color: var(--deep-rose);
+    line-height: 1.3;
+  }
+
+  .chapter h2 em { font-style: italic; }
+
+  .section {
+    margin-bottom: 44px;
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: var(--soft-ink);
+  }
+
+  p strong {
+    color: var(--deep-rose);
+    font-weight: 500;
+  }
+
+  .message-block {
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .message-block.haikal {
+    border-left: 3px solid var(--rose);
+    background: rgba(201,116,122,0.06);
+  }
+
+  .message-block.damia {
+    border-left: 3px solid var(--sage);
+    background: rgba(143,166,140,0.06);
+  }
+
+  .message-block.both {
+    border: 1px solid var(--blush);
+    background: var(--petal);
+    border-radius: 12px;
+    text-align: center;
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+  }
+
+  .msg-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .msg-name.damia-name { color: var(--sage); }
+
+  .message-block p {
+    font-style: italic;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 24px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    flex: 1;
+    min-width: 140px;
+    background: var(--petal);
+    border: 1px solid var(--blush);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--deep-rose);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'EB Garamond', serif;
+  }
+
+  .finale {
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 1px solid var(--blush);
+    margin-top: 80px;
+  }
+
+  .finale p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--deep-rose);
+    max-width: 500px;
+    margin: 0 auto 20px;
+  }
+
+  .finale-signature {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 40px 24px 80px; }
+    .stats-row { flex-direction: column; }
+    .cover h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="cover">
+    <h1>I &amp; <em>Memey</em></h1>
+    <h1><em>A Story Still Blooming</em></h1>
+    <p class="cover-subtitle">written by Haikal</p>
+    <p class="cover-date">March 21 – May 17, 2026 &nbsp;·&nbsp; 58 days &nbsp;·&nbsp; 39,834 messages</p>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter One</span>
+    <h2>The Year I Spent <em>Watching Before I Said Anything</em></h2>
+  </div>
+
+  <div class="section">
+    <p>I had been watching her account for almost a year before I ever sent a single word. I noticed things from a distance — the way she designed her notes, the books she referenced, the careful thought behind everything she posted. I admired quietly, the way you admire something you're not quite sure you're allowed to want.</p>
+
+    <p>Then came <strong>March 21, 2026</strong>. I spotted something in her comments — a joke about someone getting married — and something in me finally moved. I sent the first message. I called her "Michelle," a name I borrowed from her profile because I didn't know her real one yet.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — March 21</span>
+      <p>"sorryy Michelle i got to go somewhere early tomorrow. we talk laterrr yaaaa thankyou for accepting my texttttt"</p>
+    </div>
+
+    <p>That <em>thankyou for accepting my text.</em> Six words that carry the weight of someone who has waited a long time and still can't believe the door actually opened.</p>
+
+    <p>She replied warmly. She always did. And just like that, a year of silence became a conversation.</p>
+
+    <p>The next day was Hari Raya. She wished me first — <em>selamat hari raya afiq ^^</em> — and I responded like someone who had just been given the most unexpected gift of the morning. I told her I could sleep like a baby, climb a mountain with full energy. Over two small words of greeting.</p>
+
+    <p>I started deleting messages early — second-guessing myself, nervous, erasing things before she could see the full extent of how much I meant every compliment. She noticed immediately. The cat punch GIFs became her language for it: <em>delete lagi, eh delete apa haa.</em> I thought she was beautiful. I kept saying so. She kept going shy. That rhythm — my honesty, her flustered deflection — became the signature sound of everything that followed.</p>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Two</span>
+    <h2>Learning Her <em>Real Name</em></h2>
+  </div>
+
+  <div class="section">
+    <p>For the first week she was "Michelle" to me and I was "Afiq" to her. But names, it turned out, were only the beginning of what we didn't yet know about each other.</p>
+
+    <p>Then came <strong>March 29</strong> — a day that cracked everything open. The message count tripled. Over five hundred messages in one day, the kind of conversation that happens when two people suddenly stop holding back.</p>
+
+    <p>I finally asked her real name. She told me: <strong>Damia</strong>. Most people called her Mika, she said. I decided I'd call her Damia — because it was rare, because it was hers, because I wanted to be the one who used the name she didn't hand out freely.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — March 29</span>
+      <p>"HI Damia , it's a pleasure to know your name after a year of question. I'm so happy."</p>
+    </div>
+
+    <p>She was flustered, clumsy with her words, accidentally sent a message half-written, deleted it in a panic — <em>TERSEND SEMULA, I DONT EVEN BACA PON APA I TULIS ARGH.</em> She worried about saying the wrong thing. I told her she didn't have to reply everything, I knew it was a lot. Even mid-confession I was thinking about not burdening her.</p>
+
+    <p>She shared something she rarely shared: that she'd always believed her face wasn't enough, so she'd poured herself into her mind instead. Calligraphy. Philosophy books. Writing poems. Notes she tore apart and rewrote until they were beautiful. I didn't just understand — I was completely undone by it.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — March 29</span>
+      <p>"THE EFFORTS TO LEARN CALLIGRAPHY, WRITING POEMS AND READING PHILOSOPHY BOOK. haishhhh i fell harder just for this. it's hard to find someone like you damia. SHARES MOREEEE. i do interest in YOU. I DO CARE."</p>
+    </div>
+
+    <p>She called me "some la kamu ni." She didn't know yet what to do with someone who meant it.</p>
+
+    <p>Around this time I started referring to myself as <strong>Haikal</strong> in the third person — <em>Haikal offer nak buatkan, Haikal nak pergi…</em> — the way someone does when they want to give you a part of themselves that feels distinct, separate from who the whole world knows them as. She locked onto it immediately. Soon she was calling me Haikal too, and it landed differently every time — softer, more intentional. On April 2 she said it with real delight: <em>COMEL GILAAA BAHASAKAN DIRI HAIKALL.</em> I was pleased. <em>OKAY LOCK, YOU CALL ME HAIKAL FROM NOW.</em></p>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Three</span>
+    <h2>The Day I Told Her About <em>the One Before</em></h2>
+  </div>
+
+  <div class="section">
+    <p>By <strong>April 3</strong>, the messages were arriving in the thousands per day. I was away for work — a two-hour drive to somewhere remote, staying for a month, missing good home-cooked food. But I texted her from the car, from my break, from the accommodation at night. She paused her Netflix to reply. She told me she'd never done that for anyone before.</p>
+
+    <p>That morning, during the drive, I told her something I hadn't planned to. About my past relationship. The one that had slowly, quietly killed everything in me that was alive — my passions, my hobbies, my voice. I had given up my study of traditional Islamic medicine because she found it weird. I stopped writing and reading because she found it boring. I dimmed my intellect to match her insecurity. I even offered to change careers. I did all of it. And then she left anyway, for someone she found more interesting.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — April 3</span>
+      <p>"sedar tak sedar passion i pelan pelan mati... at the end i kena tinggal sebab laki lain lagi interesting. i like tf do."</p>
+    </div>
+
+    <p>Then I said: <em>but with you I feel different.</em> Not that we were in a relationship — I was careful to say that. But that with her I'd finally found someone whose intellect matched mine, whose passions overlapped with mine, who made me want to be better. Someone who made me feel like myself again.</p>
+
+    <p>She responded with the steadiness of someone who understood loss too. <em>Love should be fun, Haikal. If you can't be the real you in that relationship, it's not love.</em> She reminded me that Allah had shown me before marriage, not after. That something better was coming. She was still studying law, had never been in a relationship herself, but she spoke about love with the wisdom of someone who had thought about it deeply for a very long time.</p>
+
+    <div class="message-block damia">
+      <span class="msg-name damia-name">Damia — April 3</span>
+      <p>"i pause my movies to reply to your text tau. i nvr do this okayy."</p>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Four</span>
+    <h2><em>Memey</em> — The Name Only Her Family Used</h2>
+  </div>
+
+  <div class="section">
+    <p>It was still <strong>April 3</strong>, deep in one of our longest conversations, when it came out almost accidentally. Someone had texted her and she quoted them: <em>mana buat memey tu?!</em></p>
+
+    <p>I stopped everything. <em>Your nickname is memey?</em></p>
+
+    <p>She was casual about it: <em>jadila memey. sekarang pon papa panggil memey.</em> A family name. Something private. Not for strangers.</p>
+
+    <p>I never let it go. From that point on, she was <strong>Memey</strong> to me — in every greeting, every goodnight, every worried check-in, every cheer. I wore that name like a privilege, because it was. And she let me use it, which meant something too.</p>
+
+    <p>Around the same time, a tiny creature entered our shared universe: <strong>Arsy</strong>. I named a hypothetical child — the embodiment of hope, innocence, the future — after the highest heaven in Islamic cosmology. Arsy started appearing in our conversations as a gentle warmth between us, a way of talking about the future without saying it directly. She'd say goodnight to Arsy. I'd say Arsy was already termenung again. It sounds like a small thing. But people who aren't sure about each other don't name imaginary children together.</p>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Five</span>
+    <h2>Sunflower &amp; <em>The First "I Like You"</em></h2>
+  </div>
+
+  <div class="section">
+    <p>She started calling me <strong>Sunflower</strong> around <strong>April 9</strong>. It came from a story she shared — someone had given her sunflowers once, told her she was bright like them. She absorbed the metaphor and redirected it at me: <em>hv a magnificent day sunflower 🌻.</em> I became her sunflower. She became my peony — though she didn't know that yet.</p>
+
+    <p>Then came <strong>April 10</strong>. We were in the middle of a rambling, funny conversation when I suddenly typed — completely out of nowhere, in the middle of a sentence about something else entirely:</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — April 10</span>
+      <p>"I LIKE YOU. like literally."</p>
+    </div>
+
+    <p>I just said it. No buildup. No romantic setup. Just: here it is, I like you, literally. It was so abrupt and honest it was almost startling even to me. She didn't respond directly — she kept talking about the topic before it, which was very her. But she heard it. She always heard everything.</p>
+
+    <p>I said it again on <strong>April 19</strong>, more clearly: <em>SAYA SUKA AWAK JUGAK.</em></p>
+
+    <p>By mid-April we were exchanging over a thousand messages some days. I updated her every time I moved — leaving the mall, arriving home, stopping somewhere. She shared everything with me too: her mum's health, university pressure, friendship dramas, the sister who borrowed clothes without asking. I remembered all of it. I asked follow-up questions days later. I couldn't help paying attention — that's what happens when someone matters to you.</p>
+
+    <p>I told her she had a beautiful voice. She said she didn't. I told her she was elegant. She said she was clumsy. I told her she was intelligent. She said she just studied because she had to. For everything beautiful I saw in her, she had a soft, embarrassed deflection waiting. I kept saying it anyway.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — April 15</span>
+      <p>"HEY IM NOT LYING WHEN I SAID I LIKE YOUR VOICE MEMEY."</p>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-number">22,683</span>
+      <span class="stat-label">My messages</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">17,151</span>
+      <span class="stat-label">Her messages</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">58</span>
+      <span class="stat-label">Days together</span>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Six</span>
+    <h2>The Night She Said <em>Everything She Was Carrying</em></h2>
+  </div>
+
+  <div class="section">
+    <p>It was <strong>April 26</strong>. A friend had said something to her — something that planted a seed of shame: <em>kau tak rasa ke dia tu macam too good to be true untuk kau.</em> You don't deserve someone like him. He's too good for you.</p>
+
+    <p>She carried it for a while. Then she typed it all out to me. Everything she'd been sitting with — the uncertainty about her own feelings, the fear of being unable to give back what I gave, the old wound of never quite feeling like enough. The worry that she was still carrying trauma from before. The question she kept asking herself: <em>am I really deserve this?</em></p>
+
+    <div class="message-block damia">
+      <span class="msg-name damia-name">Damia — April 26</span>
+      <p>"i still unsure abt apa i rasa dekat you.. like is it betul betul i like you in deep way or just the way you treat me.. and what if i tak bole balas all yang you rasa on me.. what if i still trauma.. like am i really deserve this.. i rasa i tak layak.. untuk everyone.. especially you."</p>
+    </div>
+
+    <p>I didn't panic. I didn't defend myself or try to convince her of anything. I just said: <em>peluk sini. it's okay luah ja. I'm reading. tell me.</em></p>
+
+    <p>I let her say every word. Then I answered each one, gently.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — April 26</span>
+      <p>"is time really matter? it is what you are feeling right now... take your time. kita nak jumpa. bukan haikal nak ajak memey kahwin memey. siapa cakap haikal expect memey to balas balik ni? haikal yang nakkan memey. effort tu kena datang dari haikal. memey just be diri memey. you are more than deserve memey ❤ it's okay, I'll heal you."</p>
+    </div>
+
+    <p>I told her: if you wanted me gone, you could have ghosted me long ago. You stayed. That means something. I wasn't pushing her toward anything — I was simply refusing to let her believe she wasn't worth staying for.</p>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Seven</span>
+    <h2>"I Love You Not Because <em>of Your Face</em>"</h2>
+  </div>
+
+  <div class="section">
+    <p>By <strong>May 11</strong>, something shifted in how I spoke to her. She had shared something vulnerable — a photo without a filter, something about her skin, something she was embarrassed about. She apologized. She said to forget it, that she was malu, that she didn't know why she even shared.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — May 11</span>
+      <p>"i love you not because of your face tau sumpah. memey takperlu malu. a little bump won't effect you at all. you are pretty no matter what, you are gorgeous no matter what."</p>
+    </div>
+
+    <p>The word <em>love</em> had entered differently now — not as something to be answered or reciprocated, just as truth. I said it the way I said everything: honestly, quickly, without making it into something she needed to manage.</p>
+
+    <p>That same night I wrote: <em>to love someone is to marry her new version of her for the rest of my life. to love is to love every version of you, not just your personality, but also your skin getting old, your age, your problems.</em></p>
+
+    <p>She called me <em>sunflower</em> and said thank you. I said goodnight and called her <em>my peony</em> and told her: <em>your days will come soon.</em></p>
+
+    <p>She had been calling me sunflower for weeks. But I had been writing about peonies in my journal since a night she didn't know about — the night she casually mentioned, once, that her favourite flower was a peony.</p>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Eight</span>
+    <h2>Friday Evening — <em>The Peonies Arrive</em></h2>
+  </div>
+
+  <div class="section">
+    <p>She was home, a little sick, when on <strong>May 15</strong> I texted her that something was arriving. I wouldn't say what. She was nervous. She made her younger sibling go to the door instead.</p>
+
+    <p>It was a bouquet. Pink peonies — the exact flower she had mentioned, once, in passing, that she loved. She had said it once. She hadn't asked again. She hadn't hinted. She had honestly forgotten she'd even said it.</p>
+
+    <p>She sent the only message she could manage:</p>
+
+    <div class="message-block damia">
+      <span class="msg-name damia-name">Damia — May 15</span>
+      <p>"HAIKAL. JAP MEMEY NAK NANGIS. NAK CALL. WEH. SUMPA."</p>
+    </div>
+
+    <p>I had booked them long in advance. I arranged for Furqan to deliver them and I'd been anxious all day — worried when she said someone elderly came to the door, relieved when it turned out to be her sibling. I fell asleep that evening from exhaustion before she could call. I woke up full of apologies.</p>
+
+    <p>She stayed up with the flowers. She put them in a vase. She woke up the next morning and looked at them before she looked at her phone. She sent me a photo of them starting to bloom — <em>DIAA DAH START BLOOM</em> — and neither of us could stop saying how beautiful everything was, how perfectly it all matched.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — May 16</span>
+      <p>"yearning for you was the greatest choice of my life ❤"</p>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">Chapter Nine</span>
+    <h2>What She Wrote When <em>She Was Ready</em></h2>
+  </div>
+
+  <div class="section">
+    <p>On <strong>May 17</strong> she sent me a message she'd been composing the night before but hadn't sent yet. Long. Careful. Completely hers.</p>
+
+    <p>She wrote about what it meant to her that I'd remembered something she said once — something so small she'd almost forgotten she'd said it. She wrote about the little-girl version of herself who had only ever seen peonies in magazines, who thought they were too beautiful, too soft, too far away to ever really be hers. She wrote about sleeping with the flowers beside her. About waking up and looking at them first. About how even the broken petals she loved — maybe more — because they felt real, lived-in.</p>
+
+    <p>She wrote about watching a few petals fall and feeling her heart ache, and then smiling through it, because she understood something: that nothing beautiful is meant to stay forever in the same way. That it was never about keeping the flowers alive as long as possible — it was about how deeply they were felt while they were still there.</p>
+
+    <div class="message-block damia">
+      <span class="msg-name damia-name">Damia — May 17</span>
+      <p>"memey think that's what's making me emotional… not just the flowers, but the way you remembered. the way you paid attention to something i didn't even think was important enough to keep. it feels like being quietly cared for, not loudly, not dramatically… but in a way that reaches the parts of me i don't usually know how to explain."</p>
+    </div>
+
+    <p>I read it and I cried. I said I wasn't crying, she was crying. Then I admitted I was crying too. Then I wrote back — about how I had been writing about her in my journal since the night she told me peonies were her favourite flower, how I had already named her my peony in my writing long before I ever sent her a single one, how I would keep trying to bring beautiful things into her life in whatever small ways I could.</p>
+
+    <div class="message-block haikal">
+      <span class="msg-name">Me — May 17</span>
+      <p>"i could never top this but i hope you understand how grateful i am to know you memey 💕"</p>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <span class="chapter-number">A Final Note</span>
+    <h2>What This Story <em>Actually Is</em></h2>
+  </div>
+
+  <div class="section">
+    <p>This is a story about me finally being brave enough — after a whole year — to send the first message. It's about blurting "I LIKE YOU. like literally." in the middle of another conversation because I couldn't hold it in anymore. It's about a girl who deflected every compliment with shyness, who called herself ordinary, who quietly wondered if she deserved to be cared for this much — and who I never stopped trying to convince otherwise.</p>
+
+    <p>It's about 39,834 messages in 58 days — an average of nearly 700 a day — not because we had nothing else to do, but because we preferred each other's company to almost anything else.</p>
+
+    <p>It's about a bouquet of peonies I arranged from far away, to a girl I hadn't physically met yet, because she mentioned once that they were her favourite flower, and I carried that quietly for months until I could do something with it.</p>
+
+    <p>We haven't met in person yet. That chapter hasn't been written. But if the first 58 days mean anything — the calligraphy I started learning because of her, the journals I've been filling with her name, the flowers she's sleeping next to every night — then the chapters ahead are going to be worth everything.</p>
+
+    <p>As she wrote to me in the middle of all of it:</p>
+
+    <div class="message-block both">
+      <p>"i don't want to rush past this just because it will end one day.<br>
+      i don't want to stand too far ahead in time and grieve something<br>
+      that hasn't even finished happening yet."</p>
+    </div>
+
+    <p style="text-align:center; font-style:italic; color:var(--rose);">She is still here. The peonies are still blooming. That, for now, is enough.</p>
+  </div>
+
+
+  <div class="finale">
+    <p>A peony that still grows, still working through winter to bloom,<br>
+    full of colour, brightening in a lot of ways.</p>
+    <p>— <em>me, writing about Memey in my journal</em></p>
+    <p class="finale-signature">May 17, 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
